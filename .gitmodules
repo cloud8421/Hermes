@@ -76,3 +76,6 @@
 [submodule "hermes/vim/bundle/vim-markdown"]
 	path = hermes/vim/bundle/vim-markdown
 	url = git://github.com/tpope/vim-markdown.git
+[submodule "hermes/vim/bundle/taskpaper.vim"]
+	path = hermes/vim/bundle/taskpaper.vim
+	url = https://github.com/davidoc/taskpaper.vim
