@@ -9,6 +9,17 @@ let VimuxHeight = "30"
 let VimuxOrientation = "v"
 let VimuxUseNearestPane = 1
 
+function! RefreshAndDisplayQuickFix()
+  if filereadable(".rspec-results")
+    silent execute "!sed -e :a -e '$d;N;3,10ba' -e 'P;D' .rspec-results > .rspec-results-trim"
+    cf .rspec-results-trim
+    silent execute "!rm .rspec-results-trim"
+    call ToggleQuickfixList()
+  else
+    echo 'No .quickfix-out file'
+  endif
+endfunction
+
 if exists('$TMUX')
   " Prompt for a command to run
   map <Leader>rp :PromptVimTmuxCommand<CR>
@@ -32,6 +43,7 @@ if exists('$TMUX')
   nmap <Leader>r vip<LocalLeader>vs<CR>
 
   " Run tests
+  nnoremap <leader>s :execute RefreshAndDisplayQuickFix()<CR>
   nmap <leader>t <Plug>SendTestToTmux
   nmap <leader>f <Plug>SendFocusedTestToTmux
 endif
