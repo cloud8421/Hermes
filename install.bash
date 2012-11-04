@@ -6,31 +6,47 @@ TEMP_MANIFEST=/tmp/$USER-hermes_custom_manifest
 LAUNCHAGENTS_DIR=$HOME/Library/LaunchAgents
 touch $TEMP_MANIFEST
 
+# Set to non-zero value for debugging
+DEBUG=0
+
 # Colours
-txtund=$(tput sgr 0 1)          # Underline
-txtbld=$(tput bold)             # Bold
-bldred=${txtbld}$(tput setaf 1) #  red
-bldblu=${txtbld}$(tput setaf 4) #  blue
-bldwht=${txtbld}$(tput setaf 7) #  white
-txtrst=$(tput sgr0)             # Reset
-info=${bldwht}*${txtrst}        # Feedback
-pass=${bldblu}*${txtrst}
-warn=${bldred}*${txtrst}
-ques=${bldblu}?${txtrst}
+text_reset=$(tput sgr0)
+underline=$(tput sgr 0 1)
+bold=$(tput bold)
+bold_red=${bold}$(tput setaf 1)
+bold_green=${bold}$(tput setaf 76)
+bold_orange=${bold}$(tput setaf 172)
+bold_blue=${bold}$(tput setaf 27)
+bold_yellow=${bold}$(tput setaf 142)
+dark_blue=$bold$(tput setaf 21)
+bold_white=${bold}$(tput setaf 7)
+bold_grey=$bold$(tput setaf 238)
+
+notice=$text_reset$bold_blue
+success=$text_reset$bold_green
+failure=$text_reset$bold_red
+attention=$text_reset$bold_orange
+information=$text_reset$bold_grey
+
+package=$text_reset$bold_orange
+component=$text_reset$bold_yellow
+filename=$text_reset$underline$(tput setaf 246)
+hermes=$text_reset$bold$(tput setaf 203)Hermes$text_reset
 
 function log () {
-  echo -e "$(tput bold)$1$(tput sgr0)"
+  echo -e "$1"
   echo -e $@ >> $LOGFILE
 }
 
 function handle_error () {
   if [ "$?" != "0" ]; then
-    log "$2 $1"
+    log "${failure}$2 $1"
     exit 1
   fi
 }
 
 function customise_manifest () {
+  log "${notice}Customising the $hermes ${notice}manifest file"
   CONTENT=`cat $INSTALL_DIR/manifests/dotfile_manifest`
   for file in $CONTENT; do
     if [ -e $HOME/.$file ]
@@ -41,15 +57,17 @@ function customise_manifest () {
 }
 
 function link_dotfiles () {
-  log "Linking the dotfiles to your home folder."
+  log "${notice}Linking $hermes dotfiles to your home folder"
   CONTENT=`cat $INSTALL_DIR/manifests/dotfile_manifest`
   for file in $CONTENT; do
     SOURCE_FILE=$HOME/.hermes/hermes/$file
     TARGET_FILE=$HOME/.$file
     if [ -e $SOURCE_FILE ]; then
-      echo "Symlinking hermes dotfile $file to $HOME"
-      ln -sf $SOURCE_FILE $TARGET_FILE
-      handle_error "Could not link to $TARGET_FILE" "Symlinking:"
+      echo "${notice}Linking ${hermes} ${package}$file ${notice}to $filename$HOME/.$file"
+      if [ $DEBUG == 0 ]; then
+        ln -sf $SOURCE_FILE $TARGET_FILE
+        handle_error "Could not link to $TARGET_FILE" "Symlinking:"
+      fi
     fi
   done
 }
@@ -60,55 +78,61 @@ function check_command_dependency () {
 }
 
 function install_homebrew () {
-  log "Installing Homebrew recipe $1."
-  HOMEBREW_OUTPUT=`brew install $1 2>&1`
-  handle_error $1 "Homebrew had a problem\n($HOMEBREW_OUTPUT):"
+  log "${notice}Installing ${component}Homebrew ${notice}recipe ${package}$1"
+  if [ $DEBUG == 0 ]; then
+    HOMEBREW_OUTPUT=`brew install $1 2>&1`
+    handle_error $1 "Homebrew had a problem\n($HOMEBREW_OUTPUT):"
+  fi
 }
 
 function remove_homebrew () {
-  log "Removing homebrew recipe $1."
-  HOMEBREW_OUTPUT=`brew uninstall $1 2>&1`
-  handle_error $1 "Homebrew had a problem while removing\n($HOMEBREW_OUTPUT):"
+  log "Removing homebrew recipe $1"
+  if [ $DEBUG == 0 ]; then
+    HOMEBREW_OUTPUT=`brew uninstall $1 2>&1`
+    handle_error $1 "Homebrew had a problem while removing\n($HOMEBREW_OUTPUT):"
+  fi
 }
 
 function backup_dotfiles () {
-  log "Backing up your dotfiles."
+  log "${notice}Backing up your dotfiles"
   customise_manifest
   cd $HOME
   BACKUP_FILE=$INSTALL_DIR/dotfile_backup-$TIMESTAMP.tar.gz
-  tar zcvf $BACKUP_FILE -I $TEMP_MANIFEST >> $LOGFILE 2>&1
-  handle_error "($?)" "Backup failed, please see the install log for details"
-  log "Your dotfiles are now backed up to $BACKUP_FILE."
+  if [ $DEBUG == 0 ]; then
+    tar zcvf $BACKUP_FILE -I $TEMP_MANIFEST >> $LOGFILE 2>&1
+    handle_error "($?)" "Backup failed, please see the install log for details"
+  fi
+  log "${notice}Your dotfiles are now backed up to $filename$BACKUP_FILE"
 }
 
 function homebrew_checkinstall_recipe () {
   brew list $1 &> /dev/null
   if [ $? == 0 ]; then
-    log "Your $1 installation is fine. Doing nothing."
+    log "${success}Your $package$1 ${success}installation is fine. Doing nothing"
   else
     install_homebrew $1
   fi
 }
 
 function homebrew_checkinstall_vim () {
-  log "Checking for a sane Vim installation."
+  log "${notice}Checking for a sane ${component}Vim ${notice}installation"
   SKIP=`vim --version | grep '+clipboard'`
   if [[ "$SKIP" == "" ]]; then
     brew list macvim &> /dev/null
     if [ $? == 0 ]; then
-      log "Removing Homebrew's macvim recipe."
+      log "${attention}Removing ${component}Homebrew's ${package}macvim ${attention}recipe"
       remove_homebrew "macvim"
     else
-      log "You don't have Homebrew's macvim installed at all."
+      log "${notice}You don't have ${component}Homebrew's ${package}macvim ${notice}installed at all"
     fi
     install_homebrew $1
   else
-    log "Your Vim installation is just fine. Doing nothing."
+    log "${success}Your ${component}Vim ${success}installation is fine. Doing nothing"
   fi
 }
 
 function homebrew_dependencies () {
-  log "Installing Homebrew dependencies. This may take a while."
+  log "${notice}Installing ${component}Homebrew ${notice}dependencies. This may take a while"
   while read recipe; do
     if [[ $recipe == macvim* ]]; then
       homebrew_checkinstall_vim $recipe
@@ -119,15 +143,19 @@ function homebrew_dependencies () {
 }
 
 function get_submodules () {
-  log "Installing git submodules. This may take a while."
+  log "${notice}Installing ${component}git ${notice}submodules. This may take a while"
   cd $INSTALL_DIR
-  git submodule init && git submodule update &> /dev/null
-  handle_error
+  if [ $DEBUG == 0 ]; then
+    git submodule init && git submodule update &> /dev/null
+    handle_error
+  fi
 }
 
 function install_tmux_paste_buffer () {
 
-  mkdir -p $LAUNCHAGENTS_DIR
+  log "${notice}Installing the ${component}Tmux ${notice}paste buffer launch agent"
+  if [ $DEBUG == 0 ]; then
+    mkdir -p $LAUNCHAGENTS_DIR
 
 (
 cat <<EOF
@@ -150,14 +178,21 @@ cat <<EOF
 EOF
 ) > $LAUNCHAGENTS_DIR/uk.co.newbamboo.hermes.plist
 
-  log "Installing Tmux paste buffer launch agent"
-  launchctl load -w $LAUNCHAGENTS_DIR/uk.co.newbamboo.hermes.plist
-  log "Tmux paste buffer launch agent installed."
-  log "To disable temporarily, run: launchctl unload $LAUNCHAGENTS_DIR/uk.co.newbamboo.hermes.plist"
-  log "To disable permanently, run: launchctl -w unload $LAUNCHAGENTS_DIR/uk.co.newbamboo.hermes.plist"
+    launchctl load -w $LAUNCHAGENTS_DIR/uk.co.newbamboo.hermes.plist
+  fi
+  log "${success}The ${component}Tmux ${success}paste buffer launch agent is now installed"
+  log "${information}To disable temporarily, run: launchctl unload $LAUNCHAGENTS_DIR/uk.co.newbamboo.hermes.plist"
+  log "${information}To disable permanently, run: launchctl -w unload $LAUNCHAGENTS_DIR/uk.co.newbamboo.hermes.plist"
 }
 
-log "$(tput bold)Starting Hermes installation"
+function make_config_dir () {
+  log "${notice}Making the ${hermes} ${notice}configuration folder"
+  if [ $DEBUG == 0 ]; then
+    mkdir -p $HOME/.config
+  fi
+}
+
+log "${attention}Starting ${hermes} ${attention}installation"
 
 backup_dotfiles
 
@@ -169,7 +204,10 @@ check_command_dependency rvm
 
 homebrew_dependencies
 
-mkdir -p $HOME/.config
+make_config_dir
 link_dotfiles
 
 install_tmux_paste_buffer
+
+log "\n${hermes} ${success}is now installed."
+log "${attention}Open a new ${component}iTerm ${attention}window to load your new environment.\n"
