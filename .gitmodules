@@ -79,6 +79,3 @@
 [submodule "hermes/vim/bundle/taskpaper.vim"]
 	path = hermes/vim/bundle/taskpaper.vim
 	url = https://github.com/davidoc/taskpaper.vim
-[submodule "hermes/vim/bundle/vim-togglelist"]
-	path = hermes/vim/bundle/vim-togglelist
-	url = https://github.com/milkypostman/vim-togglelist
