@@ -469,6 +469,55 @@ it in different steps. This will also make it easier to check,
 test and manage.
 
 
+##### Visual mode
+
+You can access Vim's "visual" model by pressing `v` (character
+selection) or `V` (line selection). When in visual mode, any
+movement will modify the selection. You can also click-drag a
+screen selection with the mouse, which will automatically put you
+in visual mode. Working in visual mode can be powerful, but in
+general it's advisable not to use it too often, since the actions
+you take in visual mode are not recorded in a way that can easily
+be repeated, e.g. `.` in normal mode.
+
+There are, however, situations where visual mode has a clear
+advantage. One technique, making use of a "visual block", is great
+for doing the same thing to several lines at once.
+
+Imagine this text in Vim:
+
+    a = 1
+    b = 2
+    c = 3
+
+If we wanted to prepend the keyword `var` to every line shown
+above, we could to the following:
+
+- With the cursor on `a`, create a visual block by pressing
+  `ctrl-v`.
+- Hit `jj` to move down two lines.
+- Press `I`, type `var ` (with a space at the end) and then press
+  `Esc` to return to normal mode.
+
+The var keyword should be prepended to each of the lines.
+
+Note that this is not the only way to do this. For example, a
+macro or a normal mode command would have worked equally well.
+This latter approach is in fact usually more effective:
+
+- With the cursor on `a`, press `V` and `jj` to highlight all 3 lines
+- Enter `:` and ` :norm Ivar `
+- Press Enter
+
+When a visual range is selected, pressing `:` opens the command
+prompt with the range prefilled. By typing `:norm`, Vim
+temporarily switches to normal mode, executing the subsequent
+command for each line in the visual range. We just used `I` to
+jump before the first letter in normal mode and type `var`.
+
+This approach is good when the change we're making doesn't need to
+be repeated. In other situations, a macro is more effective.
+
 # License
 
 ## This code is free to use under the terms of the MIT license.
