@@ -79,6 +79,3 @@
 [submodule "hermes/vim/bundle/vim-bundler"]
 	path = hermes/vim/bundle/vim-bundler
 	url = https://github.com/tpope/vim-bundler
-[submodule "hermes/vim/bundle/vitality.vim"]
-	path = hermes/vim/bundle/vitality.vim
-	url = https://github.com/sjl/vitality.vim
