@@ -79,3 +79,6 @@
 [submodule "hermes/vim/bundle/vim-bundler"]
 	path = hermes/vim/bundle/vim-bundler
 	url = https://github.com/tpope/vim-bundler
+[submodule "hermes/vim/bundle/go.vim"]
+	path = hermes/vim/bundle/go.vim
+	url = https://github.com/fsouza/go.vim
