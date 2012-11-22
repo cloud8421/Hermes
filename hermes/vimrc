@@ -49,7 +49,7 @@ set foldlevelstart=99
 
 " Autocompletion options
 set wildmode=list:longest,list:full
-set complete=.,w,b
+set complete=.,w,b,u
 
 " Tags
 let Tlist_Ctags_Cmd = "/usr/local/bin/ctags -R --exclude=.git --exclude=log -f ./.tags *"
