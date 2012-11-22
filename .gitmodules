@@ -82,3 +82,6 @@
 [submodule "hermes/vim/bundle/go.vim"]
 	path = hermes/vim/bundle/go.vim
 	url = https://github.com/fsouza/go.vim
+[submodule "hermes/vim/bundle/zenburn"]
+	path = hermes/vim/bundle/zenburn
+	url = https://github.com/jnurmine/Zenburn
