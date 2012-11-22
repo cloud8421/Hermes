@@ -44,8 +44,8 @@ nmap <silent> <Left> :tabprevious<cr>
 nmap <silent> <Right> :tabnext<cr>
 
 "swap panes layout
-nmap <F9> <C-w>t<C-w>H
-nmap <F10> <C-w>t<C-w>K
+nmap <F11> <C-w>t<C-w>H
+nmap <F12> <C-w>t<C-w>K
 
 "enable . in visual mode
 vnoremap . :norm.<CR>
