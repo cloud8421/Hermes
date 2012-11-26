@@ -85,3 +85,9 @@
 [submodule "hermes/vim/bundle/zenburn"]
 	path = hermes/vim/bundle/zenburn
 	url = https://github.com/jnurmine/Zenburn
+[submodule "hermes/vim/bundle/vim-ruby"]
+	path = hermes/vim/bundle/vim-ruby
+	url = https://github.com/vim-ruby/vim-ruby
+[submodule "hermes/vim/bundle/supertab"]
+	path = hermes/vim/bundle/supertab
+	url = https://github.com/ervandew/supertab
