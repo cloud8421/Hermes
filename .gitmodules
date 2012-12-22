@@ -91,3 +91,6 @@
 [submodule "hermes/vim/bundle/supertab"]
 	path = hermes/vim/bundle/supertab
 	url = https://github.com/ervandew/supertab
+[submodule "hermes/vim/bundle/tagbar"]
+	path = hermes/vim/bundle/tagbar
+	url = https://github.com/majutsushi/tagbar
