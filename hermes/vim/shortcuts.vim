@@ -68,3 +68,6 @@ imap § <C-n>
 
 "Fixes end of line movement in visual mode
 vmap $ g_
+
+"Markdown links without copied link
+nmap <leader>l ysiw]f]a()<Left>
