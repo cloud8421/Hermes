@@ -94,3 +94,6 @@
 [submodule "hermes/vim/bundle/tagbar"]
 	path = hermes/vim/bundle/tagbar
 	url = https://github.com/majutsushi/tagbar
+[submodule "hermes/vim/bundle/vim-jade"]
+	path = hermes/vim/bundle/vim-jade
+	url = git://github.com/digitaltoad/vim-jade.git
