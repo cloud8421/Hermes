@@ -19,9 +19,6 @@
 [submodule "hermes/vim/bundle/ctrlp.vim"]
 	path = hermes/vim/bundle/ctrlp.vim
 	url = https://github.com/kien/ctrlp.vim
-[submodule "hermes/vim/bundle/vim-powerline"]
-	path = hermes/vim/bundle/vim-powerline
-	url = https://github.com/Lokaltog/vim-powerline
 [submodule "hermes/vim/bundle/zencoding-vim"]
 	path = hermes/vim/bundle/zencoding-vim
 	url = https://github.com/mattn/zencoding-vim
