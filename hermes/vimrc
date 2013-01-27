@@ -1,5 +1,9 @@
 " loading pathogen at runtime as it's bundled
 runtime bundle/vim-pathogen/autoload/pathogen.vim
+" setup Ruby path
+if !empty($MY_RUBY_HOME)
+  let g:ruby_path = join(split(glob($MY_RUBY_HOME.'/lib/ruby/*.*')."\n".glob($MY_RUBY_HOME.'/lib/rubysite_ruby/*'),"\n"),',')
+endif
 call pathogen#infect()
 
 set nocompatible  " Use Vim settings, rather then Vi settings
