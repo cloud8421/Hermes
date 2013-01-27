@@ -6,6 +6,8 @@ if !empty($MY_RUBY_HOME)
 endif
 call pathogen#infect()
 
+source $PYTHONPATH/powerline/bindings/vim/plugin/source_plugin.vim
+
 set nocompatible  " Use Vim settings, rather then Vi settings
 set nobackup
 set nowritebackup
