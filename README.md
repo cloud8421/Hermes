@@ -46,7 +46,7 @@ user account, not your main one. That said, we *have* tested it on
 our own user accounts, where it worked just fine.
 
 You can check to see which files will be overwritten in
-manifests/dotfile_manifest, or
+`manifests/dotfile_manifest`, or
 [follow this link](https://github.com/New-Bamboo/Hermes/blob/master/manifests/dotfile_manifest)
 to view it on Github.
 
@@ -116,7 +116,12 @@ remote. If you forked the project, please remember to add the original repo as
 an upstream repository to make getting new project updates easier.
 
 
-## How it's built
+## Documentation foreword
+
+This document provides enough information to make you productive with Hermes,
+but it doesn't cover the totality of what's provided by all plugins, especially
+when it comes to Vim. Please refer to their original documentation for more
+details.
 
 Hermes' goal is to provide a solid structure for you to build on top of without
 having to deal with any intermediate configuration layers.  For example, Vim's
@@ -128,7 +133,7 @@ Knowing how Hermes ties everything together is useful when it comes time to
 configure it.
 
 
-### Vim
+## Vim
 
 A stock vim installation with a basic configuration can go a long way and can
 be really beneficial when it comes to editing files on a server.
@@ -204,7 +209,7 @@ turn on features like mouse support and clipboard sharing that are useful in
 integrating Vim into iTerm and OS X.
 
 
-#### Plugins
+### Plugins
 
 Plugins are a powerful way to extend Vim's capabilities. The implementation may
 change, but we feel you should be able to expect the following from a modern
@@ -302,7 +307,7 @@ including itself. This is controlled by the first two lines in the
     call pathogen#infect()
 
 
-#### Managing configuration
+### Managing configuration
 
 If you keep extending your `.vimrc`, it comes to a point where
 it's simply too long, so it makes sense to split it into separate
@@ -342,14 +347,14 @@ files when creating its index, this simple addition will help keep
 it snappy.
 
 
-#### Daily use cases
+### Daily use cases
 
 Here are a few examples of what you can do with Vim, bearing in
 mind that this is not meant to be an exhaustive guide. Instead, we
 will focus on frequent everyday tasks:
 
 
-##### Shelling out
+#### Shelling out
 
 Having the shell at your disposal can speed up your workflow many
 times over, but to really take advantage of this it's important to
@@ -366,12 +371,16 @@ if you want to create a `sample` directory, you can type:
 The command will be performed from within the current working
 directory, you can verify that with `:pwd`.
 
+![Shelling out](https://raw.github.com/New-Bamboo/Hermes/gh-pages/images/hermes/shelling-out.gif)
+
 When you need to step out of the file you're editing, perform a
 few tasks and then go back, your best option is to suspend Vim
 using the shell via `ctrl-z` and then resume it with by typing
 the command `fg` (foreground) when you're done. This is a very
 straightforward approach and widely used in the Unix world. It
 works out of the box.
+
+![Suspending](https://raw.github.com/New-Bamboo/Hermes/gh-pages/images/hermes/suspending.gif)
 
 Alternatively, you can use a different window or pane with Tmux,
 as we shall explain later on.
@@ -388,7 +397,25 @@ assign it to `<leader>s` and then specify the command, a simple
 and then press enter (carriage return).
 
 
-##### Search and replace
+#### Reading from a source into the current buffer
+
+Another common use case is having to add content from a different source, like
+another file or a unix process.
+
+Vim provides a very simple way to do this: the `:r` command.
+
+If you have two files, `a.txt` and `b.txt`, you can open the first one and type:
+`:r b.txt`. This will add the contents of the second file in the current buffer
+(where you have opened `a.txt`).
+
+You can combine the `:r` command with `!` to shell out and get the contents from
+any command you wish. For example, you can use `ls` to list the contents of a
+directory to easily generate a manifest file. The full command would then be `:r!
+ls`.
+
+![Reading from the shell](https://raw.github.com/New-Bamboo/Hermes/gh-pages/images/hermes/reading-from-shell.gif)
+
+#### Search and replace
 
 Search and replace in Vim is a kind of regular expression usage.
 Vim expects you to provide a range and then a substitution command
@@ -407,6 +434,8 @@ flags to the command, like:
 The `g` flag predictably tells Vim to perform a global search and
 replace, with multiple replacements, while the `i` (interactive)
 flag will allow you to confirm each substitution individually.
+
+![Search and replace on the whole file](https://raw.github.com/New-Bamboo/Hermes/gh-pages/images/hermes/search-and-replace.gif)
 
 If you need to act on a specific number of lines, you have two
 options:
@@ -471,7 +500,7 @@ it in different steps. This will also make it easier to check,
 test and manage.
 
 
-##### Visual mode
+#### Visual mode
 
 You can access Vim's "visual" model by pressing `v` (character
 selection) or `V` (line selection). When in visual mode, any
@@ -503,6 +532,8 @@ above, we could to the following:
 
 The var keyword should be prepended to each of the lines.
 
+![Visual block editing](https://raw.github.com/New-Bamboo/Hermes/gh-pages/images/hermes/visual-block-substitution.gif)
+
 Note that this is not the only way to do this. For example, a
 macro or a normal mode command would have worked equally well.
 This latter approach is in fact usually more effective:
@@ -517,10 +548,12 @@ temporarily switches to normal mode, executing the subsequent
 command for each line in the visual range. We just used `I` to
 jump before the first letter in normal mode and type `var`.
 
+![Visual block normal mode](https://raw.github.com/New-Bamboo/Hermes/gh-pages/images/hermes/visual-block-normal-mode.gif)
+
 This approach is good when the change we're making doesn't need to
 be repeated. In other situations, a macro is more effective.
 
-##### Ctrl-p and fuzzy file search
+#### Ctrl-p and fuzzy file search
 
 ![Using Ctrl-p](https://raw.github.com/New-Bamboo/Hermes/gh-pages/images/hermes/ctrl-p.gif)
 
@@ -544,7 +577,110 @@ readme](https://github.com/kien/ctrlp.vim), here are some commands you can use:
 Note that any filesystem change (new or deleted files) requires a cache refresh,
 achievable by typing `:CtrlPClearCache`.
 
-#### Working with Tmux
+
+### Working with Rails
+
+Rails.vim supercharges Vim with functions, shortcuts and a general
+'rails-awareness' factor that proves to be invaluable when editing a Rails
+project.
+
+#### File navigation
+
+Due to Rails's conventional nature, any project uses the same folder structure,
+and all files the same naming conventions. Rails.vim leverages this factor and
+provides a series of commands to open specific files in a Rails project without
+manually navigating to the file and keeping the current working directory at the
+root of the Rails application.
+
+These commands always follow the same pattern and are prefixed with `R` and are
+followed by the name of the file you want to open (stripped of the extension).
+Some examples are `:Rmodel` to open a model, `:Rcontroller` for a controller,
+and so on.
+
+All commands support variations to tweak the behaviour: for example,
+`RVcontroller` will open the file in a vertically split pane. For a complete
+list, type `:help rails-navigation`.
+
+#### Alternate and related files
+
+When working on a certain feature, it's common to switch between certain files:
+model to test, controller to related view and so on. Rails.vim provides
+shortcuts for this file jumps: every file has got two counterparts: alternate
+and related. As reported in the guide (`:help rails-alternate`):
+
+Current file           | Alternate file     | Related file
+-----------------------| ------------------ | ------------
+model                  | unit test          | schema definition
+controller (in method) | functional test    | template (view)
+template (view)        | functional test    | controller (jump to method)
+migration              | previous migration | next migration
+config/database.yml    | config/routes.rb   | config/environments/\*.rb
+
+So pressing `:A` will switch between a model and its test file, while `:R` on a
+controller `index` action will take us to the related `index` view. Again, this
+commands can be combined with modifiers to open the file in a new tab or split
+(`:RV`, `:RE`, etc.).
+
+#### Overcharged gf
+
+Other commands, like the afore-mentioned `gf`, get a proper boost, becoming
+shortcuts to jump to the right file when pressed over a certain keyword. As an
+example, let's look at the following code:
+
+    class Post < ActiveRecord::Base
+
+      belongs_to :author
+
+    end
+
+Pressing `gf` on `:author` (any character) will open `app/models/author.rb`.
+Other examples are included in the relevant help section (`help rails-gf`).
+
+#### Generators and Rake
+
+You can use generators straight from Vim with `RGenerate`, with the nice side
+effects that the first generated file is automatically opened in the editor.
+
+So, if you want to generate a new migration you can:
+
+- type `:Rgenerate migration ...`
+- make the relevant changes in the file
+- type `:Rake` to execute it
+
+This leads us to the `:Rake` command: depending on the open file, it performs
+different functions. See `:help rails-rake` for details. Note that another
+plugin included with Hermes,
+[vim-bundler](https://github.com/tpope/vim-bundler), takes care of prepending
+`bundle exec` to all commands.
+
+#### Partial refactoring
+
+Another common operation is partial extraction, i.e. moving a certain portion of
+erb code into a separate partial file.
+
+Let's assume you have a file called `app/views/users/show.html.erb` with this
+content:
+
+    <ul>
+      <li><%= @user.name %></li>
+      <li><%= @user.email %></li>
+    </ul>
+
+Using visual block mode (`V`), highlight the two `<li>` tags. Then type
+`:Rextract user` and press enter. This will create a file called
+`app/views/users/_user.html.erb` with the following content:
+
+    <li><%= user.name %></li>
+    <li><%= user.email %></li>
+
+It will also update the `show` view by referencing that new partial:
+
+    <ul>
+      <%= render :partial => 'user' %>
+    </ul>
+
+
+## Working with Tmux
 
 Even if Vim by itself is indeed extremely powerful, it just shines when paired
 with Tmux. Tmux is a terminal multiplexer, a program to manage multiple shell
@@ -578,7 +714,7 @@ bells and whistles (like date, time and battery information in the status bar).
 Huge thanks to Thoughtbot for sharing most of the code that made it into this
 configuration.
 
-##### Basic interaction
+### Basic interaction
 
 If you type `tmux` in your shell, you will start a new session. As we haven't
 passed a name, the session will receive an incremental number to identify it.
@@ -619,7 +755,7 @@ Here are some basic commands:
 You can also change focus from one pane to another using the mouse, however that
 is usually slower than mastering keyboard shortcuts.
 
-##### Scrolling, copy and paste
+### Scrolling, copy and paste
 
 As expected, you can scroll inside a pane with your mouse, but Tmux supports
 complete mouseless interaction even for this kind of operation. This is possible
@@ -655,9 +791,48 @@ Allow yourself some time to master copy mode, as it's extremely powerful.
 Note that if you use the mouse and perform a drag selection, text will be
 automatically copied into the clipboard upon releasing the left mouse button.
 
+## Tmux and Vim
+
+Let's assume you are working on Rails application. Thanks to Rails.vim, you can
+easily navigate the codebase, but running tests is still a bit painful. You can
+create some bindings as shown above, but reality is, it would be great if you
+could type a shortctut to run tests "somewhere" else without interrupting your
+flow.
+
+Hermes ships a combination of plugins that let you control your test suite runs
+from Vim using a separate pane in a Tmux session, so that you can benefit from
+asynchronous test runs without leaving your editor. This is achieved thanks to
+different plugins (vimux, vimux-ruby-test, vimux-cucumber and vim-turbux). It
+may seem a complicated setup, but in reality it allows to work in a much more
+natural way.
+
+As an example, navigate to a Rails application folder on your machine and start
+a Tmux session (if you're not inside one already). Then, open `vim`.
+
+Let's assume you have a `User` model (really, any model is fine, this is just
+for example purposes), so open `app/models/user.rb`. We already know that `:A`
+lets us navigate to the corresponding spec file and back, but we can also do
+better:
+
+- Press `leader-t`: that creates (if not present) a pane below in the current
+  window to run the spec for the current file. So if you press it with
+`app/models/user.rb` visible, it's smart enough to execute the test for that
+file, independently from the testing framework (RSpec, TestUnit or MiniTest).
+
+- Now switch to the spec file and press `leader-f`: it will run the test passing
+  the current line number as an extra argument (a properly focused test).
+
+- If you now switch back to the implementation file and rerun `leader-f`, Vim
+  will remember the line number used in step 2, so that you can easily run only
+the test you need for the implementation you're working on.
+
+- What if you want to run a complex piece of code in the rails console? Just
+  open one in the split pane, select a visual block in Vim and press `leader-r`.
+It will send it to the split pane, running it into the console.
+
 # License
 
-## This code is free to use under the terms of the MIT license.
+**This code is free to use under the terms of the MIT license.**
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the

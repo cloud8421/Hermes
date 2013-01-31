@@ -5,6 +5,7 @@ if !empty($MY_RUBY_HOME)
   let g:ruby_path = join(split(glob($MY_RUBY_HOME.'/lib/ruby/*.*')."\n".glob($MY_RUBY_HOME.'/lib/rubysite_ruby/*'),"\n"),',')
 endif
 call pathogen#infect()
+Helptags
 
 source $PYTHONPATH/powerline/bindings/vim/plugin/source_plugin.vim
 
