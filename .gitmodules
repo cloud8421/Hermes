@@ -100,3 +100,6 @@
 [submodule "hermes/vim/bundle/vim-rake"]
 	path = hermes/vim/bundle/vim-rake
 	url = https://github.com/tpope/vim-rake
+[submodule "hermes/vim/bundle/vim-puppet"]
+	path = hermes/vim/bundle/vim-puppet
+	url = https://github.com/rodjek/vim-puppet
