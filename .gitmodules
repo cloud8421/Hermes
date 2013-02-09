@@ -103,3 +103,6 @@
 [submodule "hermes/vim/bundle/vim-puppet"]
 	path = hermes/vim/bundle/vim-puppet
 	url = https://github.com/rodjek/vim-puppet
+[submodule "hermes/vim/bundle/splice.vim"]
+	path = hermes/vim/bundle/splice.vim
+	url = https://github.com/sjl/splice.vim
