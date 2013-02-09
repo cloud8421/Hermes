@@ -36,6 +36,11 @@ function configure_editor {
   export EDITOR=/usr/local/bin/vim
 }
 
+function share_history {
+  shopt -s histappend
+  PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
+}
+
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 
 load_homebrew_command_completions
@@ -43,5 +48,6 @@ source_modules
 configure_rvm
 configure_editor
 tmuxify_command_prompt
+share_history
 
 eval `direnv hook $0`
