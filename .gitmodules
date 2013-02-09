@@ -19,9 +19,6 @@
 [submodule "hermes/vim/bundle/ctrlp.vim"]
 	path = hermes/vim/bundle/ctrlp.vim
 	url = https://github.com/kien/ctrlp.vim
-[submodule "hermes/vim/bundle/vim-powerline"]
-	path = hermes/vim/bundle/vim-powerline
-	url = https://github.com/Lokaltog/vim-powerline
 [submodule "hermes/vim/bundle/zencoding-vim"]
 	path = hermes/vim/bundle/zencoding-vim
 	url = https://github.com/mattn/zencoding-vim
@@ -58,12 +55,6 @@
 [submodule "hermes/vim/bundle/matchit"]
 	path = hermes/vim/bundle/matchit
 	url = https://github.com/tmhedberg/matchit
-[submodule "hermes/vim/bundle/vim-buffergator"]
-	path = hermes/vim/bundle/vim-buffergator
-	url = https://github.com/jeetsukumaran/vim-buffergator
-[submodule "hermes/vim/bundle/ack.vim"]
-	path = hermes/vim/bundle/ack.vim
-	url = https://github.com/mileszs/ack.vim
 [submodule "hermes/vim/bundle/vim-javascript"]
 	path = hermes/vim/bundle/vim-javascript
 	url = https://github.com/pangloss/vim-javascript
@@ -76,21 +67,12 @@
 [submodule "hermes/vim/bundle/vim-bundler"]
 	path = hermes/vim/bundle/vim-bundler
 	url = https://github.com/tpope/vim-bundler
-[submodule "hermes/vim/bundle/go.vim"]
-	path = hermes/vim/bundle/go.vim
-	url = https://github.com/fsouza/go.vim
-[submodule "hermes/vim/bundle/zenburn"]
-	path = hermes/vim/bundle/zenburn
-	url = https://github.com/jnurmine/Zenburn
 [submodule "hermes/vim/bundle/vim-ruby"]
 	path = hermes/vim/bundle/vim-ruby
 	url = https://github.com/vim-ruby/vim-ruby
 [submodule "hermes/vim/bundle/supertab"]
 	path = hermes/vim/bundle/supertab
 	url = https://github.com/ervandew/supertab
-[submodule "hermes/vim/bundle/tagbar"]
-	path = hermes/vim/bundle/tagbar
-	url = https://github.com/majutsushi/tagbar
 [submodule "hermes/vim/bundle/vim-jade"]
 	path = hermes/vim/bundle/vim-jade
 	url = git://github.com/digitaltoad/vim-jade.git
