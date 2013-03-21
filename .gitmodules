@@ -85,3 +85,9 @@
 [submodule "hermes/vim/bundle/splice.vim"]
 	path = hermes/vim/bundle/splice.vim
 	url = https://github.com/sjl/splice.vim
+[submodule "hermes/vim/bundle/vim-gitgutter"]
+	path = hermes/vim/bundle/vim-gitgutter
+	url = https://github.com/airblade/vim-gitgutter
+[submodule "hermes/vim/bundle/ag"]
+	path = hermes/vim/bundle/ag
+	url = https://github.com/ervandew/ag
