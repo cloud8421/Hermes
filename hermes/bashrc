@@ -41,7 +41,7 @@ function share_history {
   PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
 }
 
-export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+export PATH=/usr/local/bin:/usr/local/sbin:$HOME/bin:$PATH
 
 load_homebrew_command_completions
 source_modules
@@ -51,3 +51,6 @@ tmuxify_command_prompt
 share_history
 
 eval `direnv hook $0`
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"

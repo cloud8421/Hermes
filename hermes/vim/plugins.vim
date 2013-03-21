@@ -1,6 +1,6 @@
 "Ctrlp configuration
 let g:ctrlp_working_path_mode = 2
-set wildignore+=*/.hg/*,*/.svn/*,*/vendor/cache/*,*/public/system/*,*/public/app/vendor/*,*/tmp/*,*/log/*,*/.git/*,*/.jhw-cache/*,*/solr/data/*,*/node_modules/*,*/.DS_Store
+set wildignore+=*/.hg/*,*/.svn/*,*/vendor/cache/*,*/public/uploads/*,*/public/system/*,*/public/app/vendor/*,*/src/vendor/*,*/tmp/*,*/log/*,*/.git/*,*/.jhw-cache/*,*/solr/data/*,*/node_modules/*,*/.DS_Store
 let g:ctrlp_match_window_reversed = 0
 let g:ctrlp_extensions = ['tag']
 

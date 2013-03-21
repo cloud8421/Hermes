@@ -66,6 +66,9 @@ map <leader>3 :NERDTreeToggle<CR>
 nmap <silent> <leader>1 :CtrlP<cr>
 nmap <silent> <Leader>2 :CtrlPTag<cr>
 
+"Git gutter
+nmap <silent> <Leader>g :ToggleGitGutterLineHighlights<cr>
+
 "Automplete with §
 imap § <C-n>
 
