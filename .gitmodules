@@ -13,9 +13,6 @@
 [submodule "hermes/vim/bundle/vim-surround"]
 	path = hermes/vim/bundle/vim-surround
 	url = https://github.com/tpope/vim-surround
-[submodule "hermes/vim/bundle/snipmate.vim"]
-	path = hermes/vim/bundle/snipmate.vim
-	url = https://github.com/msanders/snipmate.vim
 [submodule "hermes/vim/bundle/ctrlp.vim"]
 	path = hermes/vim/bundle/ctrlp.vim
 	url = https://github.com/kien/ctrlp.vim
@@ -91,3 +88,12 @@
 [submodule "hermes/vim/bundle/ag"]
 	path = hermes/vim/bundle/ag
 	url = https://github.com/ervandew/ag
+[submodule "hermes/vim/bundle/vim-slim"]
+	path = hermes/vim/bundle/vim-slim
+	url = https://github.com/slim-template/vim-slim
+[submodule "hermes/vim/bundle/vim-dispatch"]
+	path = hermes/vim/bundle/vim-dispatch
+	url = https://github.com/tpope/vim-dispatch
+[submodule "hermes/vim/bundle/ultisnips"]
+	path = hermes/vim/bundle/ultisnips
+	url = https://github.com/SirVer/ultisnips
