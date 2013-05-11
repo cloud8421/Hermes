@@ -76,9 +76,6 @@
 [submodule "hermes/vim/bundle/vim-puppet"]
 	path = hermes/vim/bundle/vim-puppet
 	url = https://github.com/rodjek/vim-puppet
-[submodule "hermes/vim/bundle/splice.vim"]
-	path = hermes/vim/bundle/splice.vim
-	url = https://github.com/sjl/splice.vim
 [submodule "hermes/vim/bundle/vim-gitgutter"]
 	path = hermes/vim/bundle/vim-gitgutter
 	url = https://github.com/airblade/vim-gitgutter
@@ -88,9 +85,6 @@
 [submodule "hermes/vim/bundle/vim-slim"]
 	path = hermes/vim/bundle/vim-slim
 	url = https://github.com/slim-template/vim-slim
-[submodule "hermes/vim/bundle/vim-dispatch"]
-	path = hermes/vim/bundle/vim-dispatch
-	url = https://github.com/tpope/vim-dispatch
 [submodule "hermes/vim/bundle/ultisnips"]
 	path = hermes/vim/bundle/ultisnips
 	url = https://github.com/SirVer/ultisnips
