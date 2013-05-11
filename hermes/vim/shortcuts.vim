@@ -53,9 +53,6 @@ nmap <silent> <Right> :tabnext<cr>
 nmap <F11> <C-w>t<C-w>H
 nmap <F12> <C-w>t<C-w>K
 
-"tagbar
-nmap <F6> :TagbarToggle<CR>
-
 "enable . in visual mode
 vnoremap . :norm.<CR>
 
@@ -69,9 +66,6 @@ nmap <silent> <Leader>2 :CtrlPTag<cr>
 "Git gutter
 nmap <silent> <Leader>g :ToggleGitGutterLineHighlights<cr>
 
-"Automplete with §
-imap § <C-n>
-
 "Fixes end of line movement in visual mode
 vmap $ g_
 
@@ -81,3 +75,8 @@ nmap <leader>l ysiw]f]a()<Left>
 " Zencoding
 let g:user_zen_expandabbr_key = '<c-e>'
 let g:use_zen_complete_tag = 1
+
+" Ultisnips
+" let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"

@@ -1,13 +1,11 @@
 " loading pathogen at runtime as it's bundled
 runtime bundle/vim-pathogen/autoload/pathogen.vim
-" setup Ruby path
-if !empty($MY_RUBY_HOME)
-  let g:ruby_path = join(split(glob($MY_RUBY_HOME.'/lib/ruby/*.*')."\n".glob($MY_RUBY_HOME.'/lib/rubysite_ruby/*'),"\n"),',')
-endif
+
 call pathogen#infect()
 Helptags
 
-source $PYTHONPATH/powerline/bindings/vim/plugin/powerline.vim
+set rtp+=$PYTHONPATH/powerline/bindings/vim
+set rtp+=$GOROOT/misc/vim
 
 set nocompatible  " Use Vim settings, rather then Vi settings
 set nobackup
@@ -75,8 +73,8 @@ endif
 
 source $HOME/.vim/autocommands.vim
 source $HOME/.vim/plugins.vim
-source $HOME/.vim/shortcuts.vim
 source $HOME/.vim/rails.vim
+source $HOME/.vim/shortcuts.vim
 source $HOME/.vim/syntax.vim
 source $HOME/.vim/tmux.vim
 source $HOME/.vim/visual_fixes.vim

@@ -1,5 +1,5 @@
 " Fixes syntax highlight for Ruby files
-au BufRead,BufNewFile {Capfile,Gemfile,Rakefile,Thorfile,Vagrantfile,config.ru,.caprc,.irbrc,irb_tempfile*} set ft=ruby
+" au BufRead,BufNewFile {Capfile,Gemfile,Rakefile,Thorfile,Vagrantfile,config.ru,.caprc,.irbrc,irb_tempfile*} set ft=ruby
 
 " Fake '|' as text object
 nnoremap di\| T\|d,

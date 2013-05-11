@@ -11,22 +11,22 @@ let VimuxUseNearestPane = 1
 
 if exists('$TMUX')
   " Prompt for a command to run
-  map <Leader>rp :PromptVimTmuxCommand<CR>
+  map <Leader>rp :VimuxPromptCommand<CR>
 
   " Run last command executed by RunVimTmuxCommand
-  map <Leader>rl :RunLastVimTmuxCommand<CR>
+  map <Leader>rl :VimuxRunLastCommand<CR>
 
   " Inspect runner pane
-  map <Leader>ri :InspectVimTmuxRunner<CR>
+  map <Leader>ri :VimuxInspectRunner<CR>
 
   " Close all other tmux panes in current window
-  map <Leader>rx :CloseVimTmuxPanes<CR>
+  map <Leader>rx :VimuxClosePanes<CR>
 
   " Interrupt any command running in the runner pane
-  map <Leader>rs :InterruptVimTmuxRunner<CR>
+  map <Leader>rs :VimuxInterruptRunner<CR>
 
   " If text is selected, save it in the v buffer and send that buffer it to tmux
-  vmap <Leader>r "vy :call RunVimTmuxCommand(@v)<CR>
+  vmap <Leader>r "vy :call VimuxRunCommand(@v)<CR>
 
   " Select current paragraph and send it to tmux
   nmap <Leader>r vip<LocalLeader>vs<CR>
