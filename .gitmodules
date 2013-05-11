@@ -97,3 +97,6 @@
 [submodule "hermes/vim/bundle/vim-abolish"]
 	path = hermes/vim/bundle/vim-abolish
 	url = https://github.com/tpope/vim-abolish
+[submodule "hermes/vim/bundle/nerdtree"]
+	path = hermes/vim/bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree
