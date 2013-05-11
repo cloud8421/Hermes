@@ -18,6 +18,12 @@ _pwd ()
     echo "$PRE$NAME"
 }
 
+__rbenv_ps1 ()
+{
+  rbenv_ruby_version=`rbenv version | sed -e 's/ .*//'`
+  printf $rbenv_ruby_version
+}
+
 bash_prompt() {
   local NONE="\[\033[0m\]"    # unsets color to term's fg color
 
@@ -54,7 +60,7 @@ bash_prompt() {
   local UC=$W                 # user's color
   [ $UID -eq "0" ] && UC=$R   # root's color
 
-  PS1="$C\$(rvm-prompt p) $EMY\$(_pwd 20)$EMW\$(__git_branch)$EMM\$(__git_dirty)${NONE} 🚀  "
+  PS1="$C\$(__rbenv_ps1) $EMY\$(_pwd 20)$EMW\$(__git_branch)$EMM\$(__git_dirty)${NONE} 🚀  "
 }
 
 bash_prompt
