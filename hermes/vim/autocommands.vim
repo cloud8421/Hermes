@@ -20,3 +20,5 @@ au FocusLost * :silent! wall
 if has("autocmd")
   autocmd bufwritepost .vimrc source $MYVIMRC
 endif
+
+au BufRead,BufNewFile *.md setlocal textwidth=80
