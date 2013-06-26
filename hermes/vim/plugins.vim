@@ -7,7 +7,7 @@ let g:ctrlp_match_window_reversed = 0
 "Greyhound
 let g:greyhound_path = '/Users/cloud/bin/greyhound'
 let g:ctrlp_use_caching = 0
-let g:greyhound_exclude_paths = ".git,public/system,public/uploads,.svn,tmp/,vendor/cache,vendor/bundle,log/,.bundle,coverage/,src/vendor,node_modules"
+let g:greyhound_exclude_paths = ".git,public/system,public/uploads,.svn,tmp/,vendor/cache,vendor/bundle,log/,.bundle,coverage/,src/vendor,node_modules,bower_components "
 let g:ctrlp_user_command = g:greyhound_path." --exclude ".g:greyhound_exclude_paths
 let g:ctrlp_match_func = { 'match': 'Greyhound' }
 
@@ -19,7 +19,7 @@ function! Greyhound(items, str, limit, mmode, ispath, crfile, regex)
     let cmd = cmd.' --query '.a:str
   endif
 
-  return split(system(cmd), "\n")[0:10]
+  return split(system(cmd), "\n")
 
 endfunction
 
