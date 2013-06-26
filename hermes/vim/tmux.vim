@@ -9,6 +9,9 @@ let VimuxHeight = "30"
 let VimuxOrientation = "v"
 let VimuxUseNearestPane = 1
 
+"Turbux
+let g:turbux_command_prefix = 'bundle exec'
+
 if exists('$TMUX')
   " Prompt for a command to run
   map <Leader>rp :VimuxPromptCommand<CR>
