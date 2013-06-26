@@ -60,7 +60,7 @@ bash_prompt() {
   local UC=$W                 # user's color
   [ $UID -eq "0" ] && UC=$R   # root's color
 
-  PS1="$C\$(__rbenv_ps1) $EMY\$(_pwd 20)$EMW\$(__git_branch)$EMM\$(__git_dirty)${NONE} 🚀  "
+  PS1="$C\$(__rbenv_ps1) $EMY\$(_pwd 20)$EMB\$(__git_branch)$EMM\$(__git_dirty)${NONE} 🚀  "
 }
 
 bash_prompt
